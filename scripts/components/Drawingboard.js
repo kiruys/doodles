@@ -10,22 +10,30 @@ class Drawingboard extends React.Component {
 
 	createDoodle(evt) {
 		evt.preventDefault();
+
 		var now = new Date;
+		var hours = this.AddZero(now.getHours());
+		var minutes = this.AddZero(now.getMinutes());
+		
 		var image = this.refs.drawing.toDataURL();
 		var val = '';
 		
 		if (this.refs.name.value != '') {
 			val = this.refs.name.value;
 		}
-		
+
 		var doodle = {
 			name : val,
-			date : now.getDate() + '-' + (now.getMonth() + 1) + ' ' + now.getFullYear() + ' ' + now.getHours() + ':' + now.getMinutes(),
+			date : now.getDate() + '-' + (now.getMonth() + 1) + ' ' + now.getFullYear() + ' ' + hours + ':' + minutes,
 			image : image
 		}
 
 		this.props.addDoodle(doodle);
 		this.clearDrawingboard();
+	}
+
+	AddZero(number) {
+		return (number < 10) ? ('0' + number) : number;
 	}
 
 	paint(evt) {
