@@ -1,0 +1,98 @@
+
+.header {
+	width: 100%;
+	background-color: #D0D0D0;
+	padding: 0.5em 0;
+
+	h1 {
+		text-align: center;
+		color: yellow;
+	}
+}
+
+canvas {
+	border: 1px solid black;
+	width: 200px;
+	height: 200px;
+	//display: block;
+	position: relative;
+	background-color: #fff;
+	float: left;
+}
+
+.drawing-board {
+	padding: 0 2em;
+	float: left;
+	width: 200px;
+}
+
+.input-container {
+	position: relative;
+	width: 16em;
+	//padding: 1em 2em;
+	float: left;
+
+	label, input {
+		float: left;
+		width: 200px;
+		height: 30px;
+		margin: 1em 0;
+	}
+
+	button {
+		margin: 0.5em 0;
+		text-transform: uppercase;
+		padding: 0.4em 0.8em;
+		background-color: #c0392b;
+		color: #fff;
+		border: none;
+	}
+}
+
+.collection {
+	position: relative;
+	width: calc(100% - 200px - 8em);
+	float: left;
+	padding: 0 2em;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+
+	li {
+		display: inline-block;
+		float: left;
+		padding: 0.5em;
+		cursor: pointer;
+
+		img {
+			width: 6em;
+			height: 6em;
+		}
+		&:hover {
+			background-color: rgba(69, 78, 89, 0.35);
+		}
+		&.current {
+			h3 {
+				color: green;
+			}
+		}
+	}
+}
+
+.viewer {
+	position: relative;
+	width: calc(50% - 4em);
+	float: left;
+	padding: 0 2em;
+
+	img {
+	    height: auto; 
+	    width: auto; 
+	    max-width: 6em; 
+	    max-height: 6em;
+	}
+}
