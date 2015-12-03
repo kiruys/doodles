@@ -71,6 +71,8 @@ class Drawingboard extends React.Component {
 		var context = ReactDOM.findDOMNode(this.refs.drawing).getContext('2d');
 		context.clearRect(0, 0, 200, 200);
 		this.refs.name.value = '';
+
+		this.updateCurrent();
 	}
 
 	/*

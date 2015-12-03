@@ -89,7 +89,7 @@ class App extends React.Component {
 		to do: make the doodle disappear in the 'viewer' when the state is cleared.
 	*/
   	resetCurrentDoodle() {
-  		this.state.currentDoodle = null;
+  		this.state.currentDoodle = {image : '', name : ''};
   		this.setState({currentDoodle : this.state.currentDoodle});
   	}
 
