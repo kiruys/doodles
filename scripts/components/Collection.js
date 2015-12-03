@@ -7,11 +7,13 @@ import Doodle from './Doodle';
 import Viewer from './Viewer';
 
 class Collection extends React.Component {
-
+	/*
+		showDoodle: renders each doodle from doodles state in the collection.
+	*/
 	showDoodle(key) {
-		return <Doodle key={key} index={key} details={this.props.doodles[key]}
-			removeDoodle={this.props.removeDoodle.bind(this)} editDoodle={this.props.editDoodle.bind(this)} />
-		//return <p key={key}>{key}</p>
+		return (<Doodle key={key} index={key} details={this.props.doodles[key]}
+			removeDoodle={this.props.removeDoodle.bind(this)} />
+		)
 	}
 
 	render() {
@@ -26,6 +28,12 @@ class Collection extends React.Component {
 			</div>
 		)
 	}
+}
+
+Collection.propTypes = {
+	doodles: React.PropTypes.object.isRequired,
+	current: React.PropTypes.object.isRequired,
+	removeDoodle: React.PropTypes.func.isRequired,
 }
 
 export default Collection;

@@ -17,6 +17,7 @@ import Doodle from './components/Doodle';
 
 
 class App extends React.Component {
+
 	constructor() {
 		super();
 
@@ -27,6 +28,9 @@ class App extends React.Component {
 		}
 	}
 
+	/*
+		componentDidMount: when the dom is ready, state is synched with Firebase
+	*/
 	componentDidMount() {
 		base.syncState('doodle-store',{
 			context: this,
@@ -34,12 +38,18 @@ class App extends React.Component {
 		});
 	}
 
+	/*
+		addDoodle: creates a unique doodle key, and adds the new doodle to the doodles 'state'
+	*/
 	addDoodle(doodle) {
 		var timestamp = (new Date).getTime();
 		this.state.doodles['doodle-' + timestamp] = doodle;
 		this.setState({doodles : this.state.doodles});
 	}
 
+	/*
+		removesDoodle: removes a doodle from 'doodles' by matching its unique key;
+	*/
 	removeDoodle(key) {
 		if (confirm("are you sure you want to remove this doodle")) {
 			this.state.doodles[key] = null;
@@ -47,10 +57,11 @@ class App extends React.Component {
 		}
 	}
 
-	editDoodle(key) {
-		alert('edit');
-	}
-
+	/*
+		setPosition: Stores the position of the mouse in the canvas,
+		corrects for the positioning of the canvas.
+		to do: correct for scroll position
+	*/
 	setPosition(evt) {
 		var top =  evt.target.offsetTop;
 		var left = evt.target.offsetLeft;
@@ -62,15 +73,22 @@ class App extends React.Component {
 		this.setState({doodles : this.state.doodles});
   	}
 
+	/*
+		currentDoodle: Stores the details of the doodle that is currently drawn to 
+		render the doodle in the 'viewer'.
+	*/
   	currentDoodle(doodle) {
   		this.state.currentDoodle.image = doodle.image;
   		this.state.currentDoodle.name = doodle.name;
   		this.setState({currentDoodle : this.state.currentDoodle});
   	}
 
+	/*
+		resetCurrentDoodle: Deletes the details of the doodles,
+		when a doodle is added to the collection ('Save doodle')
+		to do: make the doodle disappear in the 'viewer' when the state is cleared.
+	*/
   	resetCurrentDoodle() {
-  		// this.state.currentDoodle.image = '';
-  		// this.state.currentDoodle.name = '';
   		this.state.currentDoodle = null;
   		this.setState({currentDoodle : this.state.currentDoodle});
   	}
@@ -86,17 +104,14 @@ class App extends React.Component {
 					currentDoodle={this.currentDoodle.bind(this)}
 					resetCurrentDoodle={this.resetCurrentDoodle.bind(this)} />
 				<Collection doodles={this.state.doodles} current={this.state.currentDoodle}
-					removeDoodle={this.removeDoodle.bind(this)}
-					editDoodle={this.editDoodle.bind(this)} />
+					removeDoodle={this.removeDoodle.bind(this)} />
 				<div className='clearfix'></div>
-			
 			</div>
 		)	
 	}
 }
 
 export default App;
-
 
 
 ReactDOM.render(<App/>, document.querySelector('#main'));

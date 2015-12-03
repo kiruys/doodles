@@ -17,16 +17,11 @@ import React from 'react';
 			</li>
 		)
 	}
+};
+
+Viewer.propTypes = {
+	current: React.PropTypes.object.isRequired
 }
 
 export default Viewer;
 
-
-			// <div className="viewer">
-			// 	<h2>View Doodle</h2>
-			// 	<div>
-			// 		<h3>{details.name}</h3>
-			// 		<p>{details.date}</p>
-			// 		<img src={details.image} />
-			// 	</div>
-			// </div>

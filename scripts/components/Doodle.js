@@ -12,7 +12,7 @@ class Doodle extends React.Component {
 		var index = this.props.index;
 
 		return (
-			<li onClick={this.props.editDoodle.bind(null, index)} >
+			<li>
 				<h3>{details.name}</h3>
 				<p className="time">{details.date}</p>
 				<img src={details.image} />
@@ -21,6 +21,12 @@ class Doodle extends React.Component {
 			</li>
 		)
 	}
+};
+
+Doodle.propTypes = {
+	index: React.PropTypes.string.isRequired,
+	details: React.PropTypes.object.isRequired,
+	removeDoodle: React.PropTypes.func.isRequired,
 }
 
 export default Doodle;

@@ -38,15 +38,6 @@ canvas {
 		height: 30px;
 		margin: 1em 0;
 	}
-
-	button {
-		margin: 0.5em 0;
-		text-transform: uppercase;
-		padding: 0.4em 0.8em;
-		background-color: #c0392b;
-		color: #fff;
-		border: none;
-	}
 }
 
 .collection {

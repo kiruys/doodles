@@ -8,6 +8,11 @@ import ReactDOM  from 'react-dom';
 
 class Drawingboard extends React.Component {
 
+	/*
+		createDoodle: creates a Doodle Object (name, date, image) from the drawing on the canvas, 
+		adds it to the collection,
+		and clears the canvas.
+	*/
 	createDoodle(evt) {
 		evt.preventDefault();
 
@@ -36,31 +41,42 @@ class Drawingboard extends React.Component {
 		return (number < 10) ? ('0' + number) : number;
 	}
 
+	/*
+		paint: draws the mouse coordinates on the canvas and 
+		updates the doodle viewer.
+	*/
 	paint(evt) {
 		var context = ReactDOM.findDOMNode(this.refs.drawing).getContext('2d');
 		var pos = this.props.position;
 
-		context.beginPath(); // begin
+		context.beginPath();
 
 		context.lineWidth = 2;
 		context.lineCap = 'round';
 		context.strokeStyle = '#c0392b';
 
-		context.moveTo(pos.x, pos.y); // from
+		context.moveTo(pos.x, pos.y);
 		this.props.setPosition(evt);
-		context.lineTo(pos.x, pos.y); // to
+		context.lineTo(pos.x, pos.y);
 
-		context.stroke(); // draw it!
+		context.stroke();
 
 		this.updateCurrent();
 	}
-
+	
+	/*
+		clearDrawingboard: clears the canvas and the input field.
+	*/
 	clearDrawingboard() {
 		var context = ReactDOM.findDOMNode(this.refs.drawing).getContext('2d');
 		context.clearRect(0, 0, 200, 200);
 		this.refs.name.value = '';
 	}
 
+	/*
+		updateCurrent: translates the drawing on the canvas to a base64 image
+		and saves this in the currentDoodle object to show it in the viewer.
+	*/
 	updateCurrent() {
 		var doodle = new Object;
 		doodle.image = this.refs.drawing.toDataURL();
@@ -73,8 +89,6 @@ class Drawingboard extends React.Component {
 	}
 
 	render() {
-		//var linkState = this.props.linkState;
-
 		var style = {
 	  		width : 200,
 	  		height : 200
@@ -97,6 +111,13 @@ class Drawingboard extends React.Component {
 			</div>
 		)
 	}
+}
+Drawingboard.propTypes = {
+	position: React.PropTypes.object.isRequired,
+	setPosition: React.PropTypes.func.isRequired,
+	addDoodle: React.PropTypes.func.isRequired,
+	currentDoodle: React.PropTypes.func.isRequired,
+	resetCurrentDoodle: React.PropTypes.func.isRequired,
 }
 
 export default Drawingboard;
